@@ -1,7 +1,9 @@
-package AlphaFold_test
+package alphafold_test
 
 import (
 	"testing"
+
+	"github.com/mackenziekormann/biodata/pkg/alphafold"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )
@@ -13,11 +15,11 @@ func TestSetupAndExecution(t *testing.T) {
 
 const basicProteinID = "P00520"
 
-Describe("Fetch Tests", func() {
+var _ = Describe("Fetch Tests", func() {
 
 	Context("When fetching data with a valid ID,", func() {
 		It("should return valid protein data without error", func() {
-			data, err := AlphaFold.FetchAlphaFoldData(basicProteinID)
+			data, err := alphafold.FetchAlphaFoldData(basicProteinID)
 
 			Expect(err).To(BeNil())
 			Expect(data).ToNot(BeNil())
