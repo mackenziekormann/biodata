@@ -32,7 +32,7 @@ type ProteinData struct {
 }
 
 // Fetch protein structure data from AlphaFold API
-func FetchAlphaFoldData(proteinID string) (*ProteinData, error) {
+func FetchAlphaFoldData(proteinID string) ([]ProteinData, error) {
 	url := fmt.Sprintf("https://alphafold.ebi.ac.uk/api/prediction/%s", proteinID)
 
 	resp, err := http.Get(url)
@@ -46,12 +46,12 @@ func FetchAlphaFoldData(proteinID string) (*ProteinData, error) {
 		return nil, err
 	}
 
-	var data ProteinData
+	var data []ProteinData
 	if err := json.Unmarshal(body, &data); err != nil {
 		return nil, err
 	}
 
-	return &data, nil
+	return data, nil
 }
 
 // Processes protein data from AlphaFold to prepare for visualization

@@ -22,7 +22,7 @@ var _ = Describe("Fetch Tests", func() {
 			data, err := alphafold.FetchAlphaFoldData(basicProteinID)
 
 			Expect(err).To(BeNil())
-			Expect(data).ToNot(BeNil())
+			Expect(data).ToNot(BeEmpty())
 		})
 	})
 })
