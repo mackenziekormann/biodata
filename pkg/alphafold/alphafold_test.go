@@ -14,15 +14,26 @@ func TestSetupAndExecution(t *testing.T) {
 }
 
 const basicProteinID = "P00520"
+const emptyString = ""
 
-var _ = Describe("Fetch Tests", func() {
+var _ = Describe("AlphaFold Tests", func() {
 
-	Context("When fetching data with a valid ID,", func() {
-		It("should return valid protein data without error", func() {
+	Describe("Fetch Tests", func() {
+
+		Specify("Fetch Tests: Basic Test", func() {
 			data, err := alphafold.FetchAlphaFoldData(basicProteinID)
 
 			Expect(err).To(BeNil())
 			Expect(data).ToNot(BeEmpty())
 		})
+
+		Specify("Fetch Tests: Empty Input", func() {
+			data, err := alphafold.FetchAlphaFoldData(emptyString)
+
+			Expect(err).ToNot(BeNil())
+			Expect(data).To(BeEmpty())
+		})
+
 	})
+
 })
